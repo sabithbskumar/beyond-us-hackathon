@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Promotable Employees</h2>
+  <table class="w3-table-all">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Joined Date</th>
+      <th>Promote</th>
+    </tr>
+    {% if promotable_employees %}
+      {% for employee in promotable_employees %}
+        <tr>
+          <td>{{ employee.name }}</td>
+          <td>{{ employee.email }}</td>
+          <td>{{ employee.date_of_joining }}</td>
+          <td><a href='/employees/promote/{{ employee.id }}'>Promote</a></td>
+        </tr>
+      {% endfor %}
+    {% else %}
+      <tr>No promotable employees found.</tr>
+    {% endif %}
+{% endblock %}
+

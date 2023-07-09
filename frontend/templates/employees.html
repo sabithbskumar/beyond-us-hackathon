@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Employees</h2>
+  <table class="w3-table-all">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone No.</th>
+      <th>Joined Date</th>
+      <th>Promoted</th>
+      <th>Edit</th>
+    </tr>
+    {% for employee in employees %}
+    <tr>
+      <td>{{ employee.name }}</td>
+      <td>{{ employee.email }}</td>
+      <td>{{ employee.contact_number }}</td>
+      <td>{{ employee.date_of_joining }}</td>
+      <td>{{ employee.promotion_date }}</td>
+      <td><a href='edit/{{ employee.id }}'>Edit</a></td>
+    {% empty %}
+      <td>No employees found.</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
+

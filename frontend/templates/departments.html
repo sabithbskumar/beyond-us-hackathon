@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Company Departments</h2>
+  <table class="w3-table-all">
+    <tr>
+      <th>Name</th>
+      <th>Location</th>
+      <th>Manager</th>
+      <th>Edit</th>
+    </tr>
+    {% for department in departments %}
+    <tr>
+      <td>{{ department.name }}</td>
+      <td>{{ department.location }}</td>
+      <td>{{ department.manager }}</td>
+      <td><a href='edit/{{ department.id }}'>Edit</a></td>
+    {% empty %}
+      <td>No departments found.</td>
+    {% endfor %}
+  </table>
+{% endblock %}
+

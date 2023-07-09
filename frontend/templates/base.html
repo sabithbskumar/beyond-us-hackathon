@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Employee Management</title>
+    <style>
+      html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
+      .w3-sidebar {
+        z-index: 3;
+        width: 250px;
+        top: 43px;
+        bottom: 0;
+        height: inherit;
+      }
+      .w3-card-4 p> label {
+        display: block;
+      }
+      .w3-card-4 p> input{
+        display: block;
+        width: 100%;
+        padding: 6px;
+        border: 1px solid #b5b5b5;
+      }
+      .w3-card-4 p> select {
+        display: block;
+        width: 100%;
+        padding: 6px;
+        border: 1px solid #b5b5b5;
+      }
+      body {
+          background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-attachment: fixed;
+      }
+      nav#sidebar {
+          box-shadow: 3px 0 2px #8b8b8b3d;
+      }
+    </style>
+</head>
+<body>
+<div class="w3-top">
+  <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="menu_open()"><i class="fa fa-bars"></i></a>
+    <span href="#" class="w3-bar-item w3-button w3-theme-l1">Employee Management System</span>
+
+      <form action="{% url 'frontend:logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="w3-right w3-hide-small w3-bar-item w3-button w3-hover-white">Logout</button>
+      </form>
+  </div>
+</div>
+
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" id="sidebar">
+  <a href="javascript:void(0)" onclick="menu_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+    <i class="fa fa-remove"></i>
+  </a>
+  <h4 class="w3-bar-item"><b>Dashboard</b></h4>
+  <a href="{% url 'frontend:employees' %}" class="w3-bar-item w3-button w3-hover-black">Employees</a>
+  <a href="{% url 'frontend:employee_add' %}" class="w3-bar-item w3-button w3-hover-black">Add Employee</a>
+  <a href="{% url 'frontend:departments' %}" class="w3-bar-item w3-button w3-hover-black">Departments</a>
+  <a href="{% url 'frontend:department_add' %}" class="w3-bar-item w3-button w3-hover-black">Add Department</a>
+  <a href="{% url 'frontend:assignments' %}" class="w3-bar-item w3-button w3-hover-black">Employee Department</a>
+  <a href="{% url 'frontend:assignment_add' %}" class="w3-bar-item w3-button w3-hover-black">Assign Department</a>
+  <a href="{% url 'frontend:promotable_employees' %}" class="w3-bar-item w3-button w3-hover-black">Promotions</a>
+  <form action="{% url 'frontend:logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit" class="w3-right w3-hide-medium w3-bar-item w3-button w3-hover-white">Logout</button>
+  </form>
+</nav>
+
+
+<div class="w3-overlay w3-hide-large" onclick="menu_close()" style="cursor:pointer" title="close side menu" id="overlay"></div>
+
+
+  <main class="w3-main" style="margin-left:250px">
+    <div class="w3-row w3-padding-64">
+    <div class="w3-container">
+    {% block content %}
+    {% endblock %}
+    </div>
+    </div>
+  </main>
+
+  <script>
+var sidebar = document.getElementById("sidebar");
+
+var overlay = document.getElementById("overlay");
+
+function menu_open() {
+  if (sidebar.style.display === 'block') {
+    sidebar.style.display = 'none';
+    overlay.style.display = "none";
+  } else {
+    sidebar.style.display = 'block';
+    overlay.style.display = "block";
+  }
+}
+
+function menu_close() {
+  sidebar.style.display = "none";
+  overlay.style.display = "none";
+}
+</script>
+</body>
+</html>
+
